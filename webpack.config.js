@@ -1,19 +1,19 @@
-const path = require('path');
+onst path = require('path');
 const HtmlWebpackPlugim = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 module.exports = {
   entry: {
     index: './index.js',
-    about: './about.js',
+    // about: './about.js',
   },
-  mode: 'production',
+  mode: 'development',
   output: {
     filename: '[name].js',
     path: path.join(__dirname, 'dist')
   },
-  optimization: {
-    usedExports: true
-  },
+  // optimization: {
+  //   usedExports: true
+  // },
   // devtool: 'cheap-module-source-map',
   module: {
     rules: [
@@ -41,28 +41,27 @@ module.exports = {
           }
         ]
       },
-      {
-        test: /\.js$/,
-        exclude: '/node_modules',
-        loader: 'babel-loader',
-        options: {
-          "presets": [
-            [
-              "@babel/preset-env",
-              {
-                "useBuiltIns": "usage"
-              }
-            ]
-          ]
-        }
-      }
+      // {
+      //   test: /\.js$/,
+      //   exclude: '/node_modules',
+      //   loader: 'babel-loader',
+      //   options: {
+      //     "presets": [
+      //       [
+      //         "@babel/preset-env",
+      //         {
+      //           "useBuiltIns": "usage"
+      //         }
+      //       ]
+      //     ]
+      //   }
+      // }
     ]
   },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 9000,
-    open: true
   },
   plugins: [
     new HtmlWebpackPlugim({

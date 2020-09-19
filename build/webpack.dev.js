@@ -7,7 +7,7 @@ const devConfig = {
     contentBase: path.join(__dirname, '../dist'),
     compress: true,
     port: 9000,
-    open: true
+    // open: true
   },
 
 };

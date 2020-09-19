@@ -1,13 +1,15 @@
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugim = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 const commonConfig = {
   entry: {
-    index: '../index.js',
-    // about: './about.js',
+    index: './index.js',
+    about: './about.js',
   },
   output: {
-    filename: '[name].js',
+    filename: '[name].[contenthash].js',
     path: path.join(__dirname, '../dist')
   },
   module: {
@@ -23,7 +25,10 @@ const commonConfig = {
       },
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        use: [
+        'style-loader',
+        'css-loader', 
+        'sass-loader']
       },
       {
         test: /\.css$/,
@@ -40,16 +45,6 @@ const commonConfig = {
         test: /\.js$/,
         exclude: '/node_modules',
         loader: 'babel-loader',
-        options: {
-          "presets": [
-            [
-              "@babel/preset-env",
-              {
-                "useBuiltIns": "usage"
-              }
-            ]
-          ]
-        }
       }
     ]
   },
@@ -57,7 +52,11 @@ const commonConfig = {
     new HtmlWebpackPlugim({
       template: './public/index.html',
     }),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
+    })
   ]
 }
 
