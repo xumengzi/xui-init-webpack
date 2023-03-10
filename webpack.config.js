@@ -1,6 +1,6 @@
-onst path = require('path');
-const HtmlWebpackPlugim = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const path = require('path');
+// const HtmlWebpackPlugim = require('html-webpack-plugin');
+const { WTFPlugin } = require('./WTFPlugin');
 module.exports = {
   entry: {
     index: './index.js',
@@ -41,21 +41,6 @@ module.exports = {
           }
         ]
       },
-      // {
-      //   test: /\.js$/,
-      //   exclude: '/node_modules',
-      //   loader: 'babel-loader',
-      //   options: {
-      //     "presets": [
-      //       [
-      //         "@babel/preset-env",
-      //         {
-      //           "useBuiltIns": "usage"
-      //         }
-      //       ]
-      //     ]
-      //   }
-      // }
     ]
   },
   devServer: {
@@ -64,9 +49,10 @@ module.exports = {
     port: 9000,
   },
   plugins: [
-    new HtmlWebpackPlugim({
-      template: './public/index.html',
-    }),
-    new CleanWebpackPlugin()
+    // new HtmlWebpackPlugim({
+    //   template: './public/index.html',
+    // }),
+    // new CleanWebpackPlugin(),
+    new WTFPlugin({name: 'xumeng', description: 'it is a plugin'})
   ]
 }
